@@ -124,13 +124,17 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    color-scheme: light;
+    @apply font-sans;
+    text-rendering: geometricPrecision;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
     @apply bg-background text-foreground font-sans text-base leading-normal;
     font-feature-settings: "kern" 1, "liga" 1;
-  }
-  html {
-    @apply font-sans;
-    text-rendering: geometricPrecision;
   }
   h1,
   h2,
