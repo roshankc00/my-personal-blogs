@@ -17,7 +17,7 @@ export const expertise = [
 ] as const;
 
 export const stack = [
-  "NestJS",
+  "Node.js",
   "TypeScript",
   "PostgreSQL",
   "AWS",
@@ -29,7 +29,7 @@ export const domains = [
   "Dating & social",
   "E-commerce",
   "Learning (LMS)",
-  "Fintech",
+  "Ads & Marketing",
 ] as const;
 
 export const lifecycle = [

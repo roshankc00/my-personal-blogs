@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Lora } from "next/font/google";
 import { Providers } from "@/components/providers";
+import {
+  defaultDescription,
+  defaultKeywords,
+  defaultOgImage,
+  defaultTitle,
+  siteAuthor,
+  siteName,
+  siteOrigin,
+  siteTagline,
+} from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,40 +29,52 @@ const lora = Lora({
   variable: "--font-lora",
 });
 
-const siteUrl = "https://blog.roshankarki1.com.np"
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteOrigin,
   title: {
-    default: "Roshan Karki — Backend engineering blog",
-    template: "%s — Roshan Karki",
+    default: defaultTitle,
+    template: `%s — ${siteName}`,
   },
-  description:
-    "Backend engineer writing about scalable APIs, NestJS, PostgreSQL, AWS, and observable systems.",
+  applicationName: siteName,
+  description: defaultDescription,
+  keywords: [...defaultKeywords],
+  authors: [siteAuthor],
+  creator: siteAuthor.name,
+  publisher: siteAuthor.name,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Roshan Karki",
-    title: "Roshan Karki — Backend engineering blog",
-    description:
-      "Backend engineer writing about scalable APIs, NestJS, PostgreSQL, AWS, and observable systems.",
+    siteName,
+    title: defaultTitle,
+    description: defaultDescription,
     images: [
       {
-        url: "/og/og.png",
-        width: 768,
-        height: 1024,
-        alt: "Roshan Karki — Backend engineering blog",
+        url: defaultOgImage.url,
+        width: defaultOgImage.width,
+        height: defaultOgImage.height,
+        alt: defaultOgImage.alt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roshan Karki — Backend engineering blog",
-    description:
-      "Backend engineer writing about scalable APIs, NestJS, PostgreSQL, AWS, and observable systems.",
-    images: ["/og/og.png"],
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [defaultOgImage.url],
   },
+  category: siteTagline,
 };
 
 export default function RootLayout({
