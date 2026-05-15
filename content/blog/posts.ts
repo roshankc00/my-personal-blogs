@@ -101,19 +101,19 @@ const databaseLoveCpu: BlogPost = {
     },
     {
       type: "p",
-      text: "database server accepts a connection from the client, client sends SQL query bytes, they sit in kernel buffer and then get copied into user space.                copyiiiiinggg ??????  boom who does it its cpuuuuu",
+      text: "database server accepts a connection from the client, client sends SQL query bytes, they sit in kernel buffer and then get copied into user space.                copyiiiiinggg ??????  boom who does it it's me again your  cpuuuuu",
     },
     {
       type: "p",
-      text: "Now the parser validates the SQL text, then builds the structured representation of that SQL, and also checks whether requested tables, columns, and things actually exist in the database. ??????  boom who does it its cpuuuuu",
+      text: "Now the parser validates the SQL text, then builds the structured representation of that SQL, and also checks whether requested tables, columns, and things actually exist in the database. ??????  boom who does it it's me again your  cpuuuuu",
     },
     {
       type: "p",
-      text: "Then the planner comes in. It decides which indexes to use based on the WHERE clause  whether it can take shortcuts using indexes or has to scan pages one by one from disk. planning things ??? boom who does it its cpuuuuu",
+      text: "Then the planner comes in. It decides which indexes to use based on the WHERE clause  whether it can take shortcuts using indexes or has to scan pages one by one from disk. planning things ??? boom who does it it's me again your  cpuuuuu",
     },
     {
       type: "p",
-      text: "Now execution starts. Yes IO brings pages from disk or memory, but boom  after that??? who does  filtering, sorting, grouping, aggregating all of that is heavy work. ??????  boom who does it its cpuuuuu",
+      text: "Now execution starts. Yes IO brings pages from disk or memory, but boom  after that??? who does  filtering, sorting, grouping, aggregating all of that is heavy work. ??????  boom who does it it's me again your  cpuuuuu",
     },
     {
       type: "p",
