@@ -13,4 +13,6 @@ export type BlogPost = {
   keywords?: readonly string[];
   publishedAt: string;
   blocks: readonly BlogBlock[];
+  /** Shown below the article body, e.g. "#Backend #Database" */
+  hashtags?: string;
 };

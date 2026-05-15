@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {
+  getBlogPostExcerpt,
+  getBlogPosts,
+} from "@/content/blog/posts";
 import { domains, expertise, lifecycle, stack } from "@/content/home";
 
 export function HomeContent() {
@@ -41,28 +45,21 @@ export function HomeContent() {
           live.
         </p>
         <ul className="mt-10 space-y-4 font-sans">
-          <li>
-            <Link
-              href="/blog/db-performance"
-              className="group inline-flex flex-col gap-2 rounded-xl border border-border/80 bg-background/80 px-5 py-4 text-left shadow-sm ring-1 ring-black/[0.03] transition-[border-color,box-shadow] hover:border-foreground/20 hover:shadow-md sm:px-6 sm:py-5 dark:border-border/60 dark:bg-card/60 dark:ring-white/[0.06] dark:hover:border-border"
-            >
-              <span className="text-lg font-semibold tracking-tight text-foreground group-hover:underline group-hover:underline-offset-4 sm:text-xl">
-                Caching is never a solution for your slow query! Yeah, you heard
-                it right.
-              </span>
-              <span className="text-base text-muted-foreground sm:text-lg">
-                last night I was on a call with my friend ! they were trying to
-                figure out how to add caching  to speed things up, but after
-                looking into the database we found the real issues were missing
-                indexes, poor composite index ordering, unordered UUID primary
-                keys, and unnecessary scans. We also discussed storing some
-                redundant data in jsonb to reduce joins because coming into 2026,
-                performance is key rather than storage size and all also about the
-                precomputed small table joins incase if we care about the
-                aggregated data! 
-              </span>
-            </Link>
-          </li>
+          {getBlogPosts().map((post) => (
+            <li key={post.slug}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group inline-flex w-full flex-col gap-2 rounded-xl border border-border/80 bg-background/80 px-5 py-4 text-left shadow-sm ring-1 ring-black/[0.03] transition-[border-color,box-shadow] hover:border-foreground/20 hover:shadow-md sm:px-6 sm:py-5 dark:border-border/60 dark:bg-card/60 dark:ring-white/[0.06] dark:hover:border-border"
+              >
+                <span className="text-lg font-semibold tracking-tight text-foreground group-hover:underline group-hover:underline-offset-4 sm:text-xl">
+                  {post.title}
+                </span>
+                <span className="line-clamp-2 text-base leading-snug text-muted-foreground sm:text-lg sm:leading-snug">
+                  {getBlogPostExcerpt(post)}
+                </span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
 

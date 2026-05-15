@@ -67,19 +67,86 @@ const dbPerformance: BlogPost = {
       type: "p",
       text: "Stop throwing Redis at every slow query. Most of the time your schema, indexing strategy, and query design are the real bottlenecks.",
     },
+  ],
+  hashtags: "#Backend #Database #Mysql #B+tree #PostgreSQL",
+};
+
+const databaseLoveCpu: BlogPost = {
+  slug: "database-love-cpu",
+  title:
+    "I always thought database CPUs just chill most of the time and IO is doing all the heavy work… but I was wrong.",
+  seoDescription:
+    "Queries are slow for more than IO. Parsing, planning, copying buffers, and execution filtering all burn CPU—and expensive queries steal it from everyone else.",
+  keywords: [
+    "database CPU",
+    "query performance",
+    "database IO",
+    "SQL parser",
+    "query planner",
+    "query execution",
+    "PostgreSQL",
+    "MySQL",
+    "cache pressure",
+    "Backend",
+  ],
+  publishedAt: "2026-05-15",
+  blocks: [
     {
       type: "p",
-      text: "#Backend #Database #Mysql #B+tree #PostgreSQL",
+      text: "I always thought database CPUs just chill most of the time and IO is doing all the heavy work… but I was wrong.",
+    },
+    {
+      type: "h2",
+      text: "Here is the reason why??",
+    },
+    {
+      type: "p",
+      text: "database server accepts a connection from the client, client sends SQL query bytes, they sit in kernel buffer and then get copied into user space.                copyiiiiinggg ??????  boom who does it its cpuuuuu",
+    },
+    {
+      type: "p",
+      text: "Now the parser validates the SQL text, then builds the structured representation of that SQL, and also checks whether requested tables, columns, and things actually exist in the database. ??????  boom who does it its cpuuuuu",
+    },
+    {
+      type: "p",
+      text: "Then the planner comes in. It decides which indexes to use based on the WHERE clause  whether it can take shortcuts using indexes or has to scan pages one by one from disk. planning things ??? boom who does it its cpuuuuu",
+    },
+    {
+      type: "p",
+      text: "Now execution starts. Yes IO brings pages from disk or memory, but boom  after that??? who does  filtering, sorting, grouping, aggregating all of that is heavy work. ??????  boom who does it its cpuuuuu",
+    },
+    {
+      type: "p",
+      text: "So yeah, sometimes queries are slow not only because of IO, but because the query itself is unbounded and expensive and worse, it can slow down other queries too by consuming CPU, memory, and cache pressure. ",
+    },
+    {
+      type: "p",
+      text: "We underestimate how much work happens inside the database before and after touching disk. ",
     },
   ],
+  hashtags: "#Backend #Database #CPU #PostgreSQL #MySQL #QueryPerformance",
 };
 
 const postsBySlug: Record<string, BlogPost> = {
   [dbPerformance.slug]: dbPerformance,
+  [databaseLoveCpu.slug]: databaseLoveCpu,
 };
 
 export function getBlogSlugs(): string[] {
   return Object.keys(postsBySlug);
+}
+
+export function getBlogPosts(): BlogPost[] {
+  return Object.values(postsBySlug).sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt),
+  );
+}
+
+export function getBlogPostExcerpt(post: BlogPost): string {
+  const paragraphs = post.blocks.filter((b) => b.type === "p" && !b.pre);
+  const excerpt =
+    paragraphs.find((b) => b.text !== post.title) ?? paragraphs[0];
+  return excerpt?.text ?? "";
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {

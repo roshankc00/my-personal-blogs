@@ -157,6 +157,12 @@ export default async function BlogPostPage({ params }: PageProps) {
             ),
           )}
         </article>
+
+        {post.hashtags ? (
+          <p className="max-w-[60ch] border-t border-border/80 pt-8 font-sans text-base leading-relaxed text-muted-foreground sm:pt-10 sm:text-lg dark:text-muted-foreground/90">
+            {post.hashtags}
+          </p>
+        ) : null}
       </main>
       <SiteFooter />
     </div>
