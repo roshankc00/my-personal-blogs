@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Lora } from "next/font/google";
 import { Providers } from "@/components/providers";
+import { Analytics } from "@vercel/analytics/next"
 import {
   defaultDescription,
   defaultKeywords,
@@ -91,6 +92,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.className} min-h-full flex flex-col bg-background text-foreground`}
       >
+        <Analytics />
         <Providers>{children}</Providers>
       </body>
     </html>
