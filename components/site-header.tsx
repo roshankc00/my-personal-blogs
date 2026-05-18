@@ -15,10 +15,10 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <nav className="flex items-center gap-0.5 text-base sm:text-lg">
             <Button variant="ghost" size="sm" asChild>
-              <Link href="#writing">Writing</Link>
+              <Link href="/#writing">Writing</Link>
             </Button>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="#about">About</Link>
+              <Link href="/#about">About</Link>
             </Button>
           </nav>
           <div className="mx-1 hidden h-5 w-px bg-border sm:block dark:bg-border/80" aria-hidden />
